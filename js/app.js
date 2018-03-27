@@ -5,16 +5,8 @@
     let xReq = new XMLHttpRequest();
     xReq.open('GET',nameCity);
       xReq.onload =function result(){
-       let flowersApi = "https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=rose+flowers&image_type=photo&pretty=true"
-let xReq = new XMLHttpRequest();
-xReq.open('GET', flowersApi);
-xReq.onload = function result() {
     let xData = JSON.parse(xReq.responseText);
-    let flowers = document.getElementById("flowers");
-    flowers.src = xData.hits[6].previewURL;
-}
-xReq.send();
-        let temperatureValue = document.getElementById("temperatureValue");
+    let temperatureValue = document.getElementById("temperatureValue");
         temperatureValue.innerHTML = xData.main.temp;  
         let curentWeatherIcon = document.getElementById("curentWeatherIcon");
         let icon = "./images/icons/" + xData.weather[0].icon + ".svg";
@@ -34,14 +26,41 @@ xReq.send();
             return 'Northerly';
         }
         windDirection.innerHTML = toTextualDescription(xData.wind.deg);
-        //descriptionValue.innerHTML = xData.weather[0].main; 
-        
-        //humidityValue.innerHTML = xData.main.humidity;  
-        //windSpeedValue.innerHTML = xData.wind.speed;
-    };
-     xReq.send();
-     handleForecastWeather();
+        descriptionValue.innerHTML = xData.weather[0].main; 
+        windSpeedValue.innerHTML = xData.wind.speed;
 }
+xReq.send();
+handleForecastWeather();
+}
+
+    //     let temperatureValue = document.getElementById("temperatureValue");
+    //     temperatureValue.innerHTML = xData.main.temp;  
+    //     let curentWeatherIcon = document.getElementById("curentWeatherIcon");
+    //     let icon = "./images/icons/" + xData.weather[0].icon + ".svg";
+    //     curentWeatherIcon.src = icon;
+    //     let windSpeed = document.getElementById("wind-speed");
+    //     windSpeed.innerHTML = xData.wind.speed + "m/s";
+    //     let windDirection = document.getElementById("wind-direction");
+    //     function  toTextualDescription(degree){
+    //         if (degree>337.5) return 'Northerly';
+    //         if (degree>292.5) return 'North Westerly';
+    //         if(degree>247.5) return 'Westerly';
+    //         if(degree>202.5) return 'South Westerly';
+    //         if(degree>157.5) return 'Southerly';
+    //         if(degree>122.5) return 'South Easterly';
+    //         if(degree>67.5) return 'Easterly';
+    //         if(degree>22.5){return 'North Easterly';}
+    //         return 'Northerly';
+    //     }
+    //     windDirection.innerHTML = toTextualDescription(xData.wind.deg);
+    //     //descriptionValue.innerHTML = xData.weather[0].main; 
+        
+    //     //humidityValue.innerHTML = xData.main.humidity;  
+    //     //windSpeedValue.innerHTML = xData.wind.speed;
+    // };
+    //  xReq.send();
+    //  ;
+//}
 
 function handleForecastWeather() {
     let findLocation = document.getElementById("find-location-co").value;
@@ -54,6 +73,7 @@ function handleForecastWeather() {
         for(i in xData.list){
             console.log(xData.list[i].dt_txt)
         }
+
         let d1 = new Date(`${xData.list[8].dt_txt}`);
         let day1 = document.getElementById('day1');
         day1.innerHTML = days[d1.getDay()];
@@ -98,15 +118,17 @@ function dayAndDate(){
 dayAndDate();
 
 //Photos start form here
-function awsomePhotos(x){
-    x = 10;
-    let flowersApi = "https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=rose+flowers&image_type=photo&pretty=true"
+function awsomePhotos(photoKey){
+    //the photos are change acording to the number of the curently day the week thats mean that the key of object = the number of the day
+    let d = new Date();
+    photoKey = d.getDay();
+    let flowersApi = "https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=flowers&image_type=photo&pretty=true"
     let xReqF = new XMLHttpRequest();
     xReqF.open('GET', flowersApi);
     xReqF.onload = function result() {
         let xData = JSON.parse(xReqF.responseText);
         let flowers = document.getElementById("flowers");
-        flowers.src = xData.hits[x].previewURL;
+        flowers.src = xData.hits[photoKey].previewURL;
     }
     xReqF.send();
 
@@ -116,7 +138,7 @@ function awsomePhotos(x){
     xReqC.onload = function result() {
         let xData = JSON.parse(xReqC.responseText);
         let flowers = document.getElementById("cities");
-        flowers.src = xData.hits[x].previewURL;
+        flowers.src = xData.hits[photoKey].previewURL;
     }
     xReqC.send();
 
@@ -126,7 +148,7 @@ function awsomePhotos(x){
     xReqP.onload = function result() {
         let xData = JSON.parse(xReqP.responseText);
         let people = document.getElementById("people");
-        people.src = xData.hits[x].previewURL;
+        people.src = xData.hits[photoKey].previewURL;
     }
     xReqP.send();
 
@@ -136,7 +158,7 @@ function awsomePhotos(x){
     xReqW.onload = function result() {
         let xData = JSON.parse(xReqW.responseText);
         let winter = document.getElementById("winter");
-        winter.src = xData.hits[x].previewURL;
+        winter.src = xData.hits[photoKey].previewURL;
     }
     xReqW.send();
 
@@ -146,7 +168,7 @@ function awsomePhotos(x){
     xReqS.onload = function result() {
         let xData = JSON.parse(xReqS.responseText);
         let spring = document.getElementById("spring");
-        spring.src = xData.hits[x].previewURL;
+        spring.src = xData.hits[photoKey].previewURL;
     }
     xReqS.send();
 
@@ -156,7 +178,7 @@ function awsomePhotos(x){
     xReqA.onload = function result() {
         let xData = JSON.parse(xReqA.responseText);
         let autumn = document.getElementById("autumn");
-        autumn.src = xData.hits[x].previewURL;
+        autumn.src = xData.hits[photoKey].previewURL;
     }
     xReqA.send();
 
@@ -166,7 +188,7 @@ function awsomePhotos(x){
     xReqH.onload = function result() {
         let xData = JSON.parse(xReqH.responseText);
         let house = document.getElementById("house");
-        house.src = xData.hits[x].previewURL;
+        house.src = xData.hits[photoKey].previewURL;
     }
     xReqH.send();
 
@@ -176,7 +198,7 @@ function awsomePhotos(x){
     xReqWildlife.onload = function result() {
         let xData = JSON.parse(xReqWildlife.responseText);
         let wildlife = document.getElementById("wildlife");
-        wildlife.src = xData.hits[x].previewURL;
+        wildlife.src = xData.hits[photoKey].previewURL;
     }
     xReqWildlife.send();
 
@@ -186,8 +208,32 @@ function awsomePhotos(x){
     xReqBalloon.onload = function result() {
         let xData = JSON.parse(xReqBalloon.responseText);
         let balloon = document.getElementById("balloon");
-        balloon.src = xData.hits[x].previewURL;
+        balloon.src = xData.hits[photoKey].previewURL;
+        //balloon.onClick = bigPhoto(xData.hits[photoKey].previewURL);
     }
     xReqBalloon.send();
 }
 awsomePhotos();
+
+//This photo make the photo show big photo when choice a a one photo from the awsome photos
+function bigPhoto(photoApi){
+    event.preventDefault();
+    let d = new Date();
+    let photoKey = d.getDay();
+    xReqPhotoChoice = new XMLHttpRequest();
+    xReqPhotoChoice.open('GET', photoApi);
+    xReqPhotoChoice.onload = function result(){
+        let xData = JSON.parse(xReqPhotoChoice.responseText);
+        let dialog = document.getElementById("dialog");
+        dialog.src = xData.hits[photoKey].webformatURL;
+        let modal = document.getElementById('modal-content1');
+        modal.style.display = "block";
+    }
+    xReqPhotoChoice.send();
+}
+//This function make the big photo is visible when click on somewhere empty around the big photo
+function visibleBigPhoto(){
+ let bigPhoto = document.getElementById('modal-content1');
+ bigPhoto.style.display = "none";
+}
+

@@ -1449,6 +1449,10 @@ form textarea {
       width: 100%;
       max-width: 100%;
       height: auto; }
+#flowers,#cities,#people,#winter,#spring,#autumn,#house,#wildlife,#balloon{
+     width: 100px;
+    height: 100px;
+}
 
 .breadcrumb {
   background: #262936;
@@ -1674,3 +1678,23 @@ form textarea {
     .site-footer .social-links a:hover {
       background: #009ad8;
       color: white; }
+
+      
+/* from here start the style of slide show photos slideshow */
+#modal-content1 {
+  display:none;
+  width: 100%;
+  padding: 0%;
+  margin: 0%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.836);
+  /* border: 1px solid #888; */
+  z-index: 100;
+  top:20%;
+  position: fixed;
+}
+#dialog{
+margin-left: 25%;
+top:20%;
+position: fixed;
+}
