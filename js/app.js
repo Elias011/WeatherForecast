@@ -1,76 +1,76 @@
- function handelCityName(){
-	let findLocation = document.getElementById("find-location-co").value;
+function handelCityName() {
+    let findLocation = document.getElementById("find-location-co").value;
     document.getElementById("location-name").innerHTML = findLocation;
     let nameCity = 'https://api.openweathermap.org/data/2.5/weather?q=' + findLocation + '&appid=6d8108cde3bc437877134c8a14c900ad&units=metric'; // here get the city name and make from API a link to can get all the information weather for the city in the input box
     let xReq = new XMLHttpRequest();
-    xReq.open('GET',nameCity);
-      xReq.onload =function result(){
-    let xData = JSON.parse(xReq.responseText);
-    let temperatureValue = document.getElementById("temperatureValue");
-        temperatureValue.innerHTML = xData.main.temp;  
+    xReq.open('GET', nameCity);
+    xReq.onload = function result() {
+        let xData = JSON.parse(xReq.responseText);
+        let temperatureValue = document.getElementById("temperatureValue");
+        temperatureValue.innerHTML = xData.main.temp;
         let curentWeatherIcon = document.getElementById("curentWeatherIcon");
         let icon = "./images/icons/" + xData.weather[0].icon + ".svg";
         curentWeatherIcon.src = icon;
         let windSpeed = document.getElementById("wind-speed");
         windSpeed.innerHTML = xData.wind.speed + "m/s";
         let windDirection = document.getElementById("wind-direction");
-        function  toTextualDescription(degree){
-            if (degree>337.5) return 'Northerly';
-            if (degree>292.5) return 'North Westerly';
-            if(degree>247.5) return 'Westerly';
-            if(degree>202.5) return 'South Westerly';
-            if(degree>157.5) return 'Southerly';
-            if(degree>122.5) return 'South Easterly';
-            if(degree>67.5) return 'Easterly';
-            if(degree>22.5){return 'North Easterly';}
+        function toTextualDescription(degree) {
+            if (degree > 337.5) return 'Northerly';
+            if (degree > 292.5) return 'North Westerly';
+            if (degree > 247.5) return 'Westerly';
+            if (degree > 202.5) return 'South Westerly';
+            if (degree > 157.5) return 'Southerly';
+            if (degree > 122.5) return 'South Easterly';
+            if (degree > 67.5) return 'Easterly';
+            if (degree > 22.5) { return 'North Easterly'; }
             return 'Northerly';
         }
         windDirection.innerHTML = toTextualDescription(xData.wind.deg);
-        descriptionValue.innerHTML = xData.weather[0].main; 
+        descriptionValue.innerHTML = xData.weather[0].main;
         windSpeedValue.innerHTML = xData.wind.speed;
-}
-xReq.send();
-handleForecastWeather();
+    }
+    xReq.send();
+    handleForecastWeather();
 }
 
-    //     let temperatureValue = document.getElementById("temperatureValue");
-    //     temperatureValue.innerHTML = xData.main.temp;  
-    //     let curentWeatherIcon = document.getElementById("curentWeatherIcon");
-    //     let icon = "./images/icons/" + xData.weather[0].icon + ".svg";
-    //     curentWeatherIcon.src = icon;
-    //     let windSpeed = document.getElementById("wind-speed");
-    //     windSpeed.innerHTML = xData.wind.speed + "m/s";
-    //     let windDirection = document.getElementById("wind-direction");
-    //     function  toTextualDescription(degree){
-    //         if (degree>337.5) return 'Northerly';
-    //         if (degree>292.5) return 'North Westerly';
-    //         if(degree>247.5) return 'Westerly';
-    //         if(degree>202.5) return 'South Westerly';
-    //         if(degree>157.5) return 'Southerly';
-    //         if(degree>122.5) return 'South Easterly';
-    //         if(degree>67.5) return 'Easterly';
-    //         if(degree>22.5){return 'North Easterly';}
-    //         return 'Northerly';
-    //     }
-    //     windDirection.innerHTML = toTextualDescription(xData.wind.deg);
-    //     //descriptionValue.innerHTML = xData.weather[0].main; 
-        
-    //     //humidityValue.innerHTML = xData.main.humidity;  
-    //     //windSpeedValue.innerHTML = xData.wind.speed;
-    // };
-    //  xReq.send();
-    //  ;
+//     let temperatureValue = document.getElementById("temperatureValue");
+//     temperatureValue.innerHTML = xData.main.temp;  
+//     let curentWeatherIcon = document.getElementById("curentWeatherIcon");
+//     let icon = "./images/icons/" + xData.weather[0].icon + ".svg";
+//     curentWeatherIcon.src = icon;
+//     let windSpeed = document.getElementById("wind-speed");
+//     windSpeed.innerHTML = xData.wind.speed + "m/s";
+//     let windDirection = document.getElementById("wind-direction");
+//     function  toTextualDescription(degree){
+//         if (degree>337.5) return 'Northerly';
+//         if (degree>292.5) return 'North Westerly';
+//         if(degree>247.5) return 'Westerly';
+//         if(degree>202.5) return 'South Westerly';
+//         if(degree>157.5) return 'Southerly';
+//         if(degree>122.5) return 'South Easterly';
+//         if(degree>67.5) return 'Easterly';
+//         if(degree>22.5){return 'North Easterly';}
+//         return 'Northerly';
+//     }
+//     windDirection.innerHTML = toTextualDescription(xData.wind.deg);
+//     //descriptionValue.innerHTML = xData.weather[0].main; 
+
+//     //humidityValue.innerHTML = xData.main.humidity;  
+//     //windSpeedValue.innerHTML = xData.wind.speed;
+// };
+//  xReq.send();
+//  ;
 //}
 
 function handleForecastWeather() {
     let findLocation = document.getElementById("find-location-co").value;
-    let nameCity ='https://api.openweathermap.org/data/2.5/forecast?q='+ findLocation +'&appid=6d8108cde3bc437877134c8a14c900ad&units=metric';
+    let nameCity = 'https://api.openweathermap.org/data/2.5/forecast?q=' + findLocation + '&appid=6d8108cde3bc437877134c8a14c900ad&units=metric';
     let xReq = new XMLHttpRequest();
-    xReq.open('GET',nameCity);
-      xReq.onload =function result(){
+    xReq.open('GET', nameCity);
+    xReq.onload = function result() {
         let xData = JSON.parse(xReq.responseText);
-        let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        for(i in xData.list){
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        for (i in xData.list) {
             console.log(xData.list[i].dt_txt)
         }
 
@@ -87,7 +87,7 @@ function handleForecastWeather() {
         let iconDay2 = document.getElementById("icon_day2");
         iconDay2.src = "./images/icons/" + xData.list[16].weather[0].icon + ".svg";
         let tempDay2 = document.getElementById("temp_day2");
-        tempDay2.innerHTML =Math.round(xData.list[16].main.temp);
+        tempDay2.innerHTML = Math.round(xData.list[16].main.temp);
         let d3 = new Date(`${xData.list[24].dt_txt}`);
         let day3 = document.getElementById('day3');
         day3.innerHTML = days[d3.getDay()];
@@ -102,23 +102,23 @@ function handleForecastWeather() {
         iconDay4.src = "./images/icons/" + xData.list[32].weather[0].icon + ".svg";
         let tempDay4 = document.getElementById("temp_day4");
         tempDay4.innerHTML = Math.round(xData.list[32].main.temp);
-      };
-      xReq.send();
+    };
+    xReq.send();
 }
 
-function dayAndDate(){
+function dayAndDate() {
     let currentDate = document.getElementById("currentDate");
     let currentDay = document.getElementById("currentDay");
     let d = new Date();
-    let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     currentDay.innerHTML = days[d.getDay()];
-    let months = ["January", "February", "March", "April", "May","June","July", "August", "September", "October", "November", "December"];
-     currentDate.innerHTML =d.getDate() + " " + months[d.getMonth()];
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    currentDate.innerHTML = d.getDate() + " " + months[d.getMonth()];
 }
 dayAndDate();
 
 //Photos start form here
-function awsomePhotos(photoKey){
+function awsomePhotos(photoKey) {
     //the photos are change acording to the number of the curently day the week thats mean that the key of object = the number of the day
     let d = new Date();
     photoKey = d.getDay();
@@ -216,13 +216,15 @@ function awsomePhotos(photoKey){
 awsomePhotos();
 
 //This photo make the photo show big photo when choice a a one photo from the awsome photos
-function bigPhoto(photoApi){
+function bigPhoto(photoApi, photoKey) {
+    this.photoApi = photoApi;
+    this.photoKey = photoKey;
     event.preventDefault();
     let d = new Date();
-    let photoKey = d.getDay();
+    photoKey = d.getDay();
     xReqPhotoChoice = new XMLHttpRequest();
     xReqPhotoChoice.open('GET', photoApi);
-    xReqPhotoChoice.onload = function result(){
+    xReqPhotoChoice.onload = function result() {
         let xData = JSON.parse(xReqPhotoChoice.responseText);
         let dialog = document.getElementById("dialog");
         dialog.src = xData.hits[photoKey].webformatURL;
@@ -231,9 +233,33 @@ function bigPhoto(photoApi){
     }
     xReqPhotoChoice.send();
 }
-//This function make the big photo is visible when click on somewhere empty around the big photo
-function visibleBigPhoto(){
- let bigPhoto = document.getElementById('modal-content1');
- bigPhoto.style.display = "none";
+
+function nextPhoto(){
+    let bigNextPhoto = new bigPhoto();
+    
+    photoKey++;
 }
+
+//This function make the big photo is visible when click on somewhere empty around the big photo
+function visibleBigPhoto() {
+    let bigPhoto = document.getElementById('modal-content1');
+    bigPhoto.style.display = "none";
+}
+
+
+function curentCity() {
+    if (typeof localStorage.getItem('curentCity') === 'undefined' || localStorage.getItem('curentCity') === null){
+        let cityName = prompt('Welcome at Elias Forecast!! type your curent city please!!');
+        localStorage.setItem("curentCity", cityName);
+        let findLocation = document.getElementById("find-location-co");
+        findLocation.value = cityName;
+        handelCityName();
+    }else{
+        let findLocation = document.getElementById("find-location-co");
+        findLocation.value = localStorage.getItem('curentCity');
+        handelCityName();
+    }
+
+}
+curentCity();
 

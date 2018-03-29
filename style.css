@@ -1690,11 +1690,29 @@ form textarea {
   background-color: rgba(0, 0, 0, 0.836);
   /* border: 1px solid #888; */
   z-index: 100;
-  top:20%;
+  top:0%;
   position: fixed;
 }
 #dialog{
 margin-left: 25%;
 top:20%;
 position: fixed;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 50px;
+  float: left;
+}
+
+.next {
+  background-color: #4CAF50;
+  color: white;
+  float: right;
+  font-size: 50px;
+}
+
+.round {
+  border-radius: 50%;
 }
