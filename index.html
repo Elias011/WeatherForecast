@@ -59,7 +59,7 @@
 						<input type="submit" value="Find" id="find-button" onclick="handelCityName()">
 					</form>
 
-				</div>
+				</div> 
 			</div>
 			<div class="forecast-table">
 				<div class="container">
@@ -164,28 +164,28 @@
 						<div class="row">
 							<div class="col-md-3 col-sm-6">
 								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-1.jpg" alt=""></figure>
+									<figure class="live-camera-cover"><video width="320" height="240" controls></video></figure>
 									<h3 class="location">New York</h3>
 									<small class="date">8 oct, 8:00AM</small>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-6">
 								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-2.jpg" alt=""></figure>
+									<figure class="live-camera-cover"><video width="320" height="240" controls></video></figure>
 									<h3 class="location">Los Angeles</h3>
 									<small class="date">8 oct, 8:00AM</small>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-6">
 								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-3.jpg" alt=""></figure>
+									<figure class="live-camera-cover"><video width="320" height="240" controls></video></video></figure>
 									<h3 class="location">Chicago</h3>
 									<small class="date">8 oct, 8:00AM</small>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-6">
 								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-4.jpg" alt=""></figure>
+									<figure class="live-camera-cover"><video width="320" height="240" controls></video></figure>
 									<h3 class="location">London</h3>
 									<small class="date">8 oct, 8:00AM</small>
 								</div>
@@ -258,15 +258,15 @@
 							<div class="col-md-4">
 								<h2 class="section-title">Awesome Photos</h2>
 								<div class="photo-grid">
-									<a href="#"><img id="flowers" onclick="return bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=flowers&image_type=photo&pretty=true')" src="images/thumb-1.jpg" alt="#"></a>
-									<a href="#"><img id="cities" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=cities&image_type=photo&pretty=true')" src="images/thumb-2.jpg" alt="#"></a>
-									<a href="#"><img id="people" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=people&image_type=photo&pretty=true')" src="images/thumb-3.jpg" alt="#"></a>
+									<a href="#"><img id="flowers" onclick="return bigPhoto('flowers')" src="images/thumb-1.jpg" alt="#"></a>
+									<a href="#"><img id="cities" onclick="bigPhoto('cities')" src="images/thumb-2.jpg" alt="#"></a>
+									<a href="#"><img id="people" onclick="bigPhoto('people')" src="images/thumb-3.jpg" alt="#"></a>
 									<a href="#"><img id="winter" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=winter&image_type=photo&pretty=true')" src="images/thumb-4.jpg" alt="#"></a>
-									<a href="#"><img id="spring" src="images/thumb-5.jpg" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=spring&image_type=photo&pretty=true')" alt="#"></a>
-									<a href="#"><img id="autumn" src="images/thumb-6.jpg" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=autumn&image_type=photo&pretty=true')" alt="#"></a>
-									<a href="#"><img id="house" src="images/thumb-7.jpg" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=house&image_type=photo&pretty=true')" alt="#"></a>
-									<a href="#"><img id="wildlife" src="images/thumb-8.jpg" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=wildlife&image_type=photo&pretty=true')" alt="#"></a>
-									<a href="#"><img id="balloon" src="images/thumb-9.jpg" onclick="bigPhoto('https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q=balloon&image_type=photo&pretty=true')" alt="#"></a>
+									<a href="#"><img id="spring" src="images/thumb-5.jpg" onclick="bigPhoto('spring')" alt="#"></a>
+									<a href="#"><img id="autumn" src="images/thumb-6.jpg" onclick="bigPhoto('autumn')" alt="#"></a>
+									<a href="#"><img id="house" src="images/thumb-7.jpg" onclick="bigPhoto('house')" alt="#"></a>
+									<a href="#"><img id="wildlife" src="images/thumb-8.jpg" onclick="bigPhoto('wildlife')" alt="#"></a>
+									<a href="#"><img id="balloon" src="images/thumb-9.jpg" onclick="bigPhoto('balloon')" alt="#"></a>
 								</div>
 							</div>
 						</div>
@@ -278,11 +278,53 @@
 			<div id="myModal" class="modal">
 
 				<!-- Modal content -->
-				<div id="modal-content1" class="modal-content" onclick="visibleBigPhoto()">
+				<div id="modal-content1" class="modal-content" ondblclick="visibleBigPhoto()">
 				  <!-- <span class="close">&times;</span> -->
-				  <a href="#" class="next round">&#8250;</a>
-			      <img id = "dialog">
-				  <a href="#" class="previous round">&#8249;</a>
+			      <div class="slideshow-container">
+
+					<div class="mySlides fade">
+					  <img id="dialog1" style="width:100%">
+					</div>
+					
+					<div class="mySlides fade">
+					  <img id="dialog2" style="width:100%">
+					</div>
+					
+					<div class="mySlides fade">
+					  <img id="dialog3" style="width:100%">
+					</div>
+
+					<div class="mySlides fade">
+						<img id="dialog4" style="width:100%">
+					  </div>
+
+					  <div class="mySlides fade">
+						<img id="dialog5" style="width:100%">
+					  </div>
+					
+					  <div class="mySlides fade">
+						<img id="dialog6" style="width:100%">
+					  </div>
+
+					  <div class="mySlides fade">
+						<img id="dialog7" style="width:100%">
+					  </div>
+
+					  <div class="mySlides fade">
+						<img id="dialog8" style="width:100%">
+					  </div>
+
+					  <div class="mySlides fade">
+						<img id="dialog9" style="width:100%">
+					  </div>
+
+					  <div class="mySlides fade">
+						<img id="dialog10" style="width:100%">
+					  </div>
+					<button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+					<button class="next" onclick="plusSlides(1)">&#10095;</button>
+					</div>
+					<br>
 				</div>
 			  
 			  </div>

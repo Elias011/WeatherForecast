@@ -19,7 +19,7 @@ function handelCityName() {
             if (degree > 292.5) return 'North Westerly';
             if (degree > 247.5) return 'Westerly';
             if (degree > 202.5) return 'South Westerly';
-            if (degree > 157.5) return 'Southerly';
+            if (degree > 157.5) return 'Southerly'; 
             if (degree > 122.5) return 'South Easterly';
             if (degree > 67.5) return 'Easterly';
             if (degree > 22.5) { return 'North Easterly'; }
@@ -70,10 +70,6 @@ function handleForecastWeather() {
     xReq.onload = function result() {
         let xData = JSON.parse(xReq.responseText);
         let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        for (i in xData.list) {
-            console.log(xData.list[i].dt_txt)
-        }
-
         let d1 = new Date(`${xData.list[8].dt_txt}`);
         let day1 = document.getElementById('day1');
         day1.innerHTML = days[d1.getDay()];
@@ -116,6 +112,7 @@ function dayAndDate() {
     currentDate.innerHTML = d.getDate() + " " + months[d.getMonth()];
 }
 dayAndDate();
+
 
 //Photos start form here
 function awsomePhotos(photoKey) {
@@ -216,34 +213,59 @@ function awsomePhotos(photoKey) {
 awsomePhotos();
 
 //This photo make the photo show big photo when choice a a one photo from the awsome photos
-function bigPhoto(photoApi, photoKey) {
-    this.photoApi = photoApi;
-    this.photoKey = photoKey;
+function bigPhoto(photoApi) {
     event.preventDefault();
+    localStorage.setItem("curentBigPhoto", photoApi);
     let d = new Date();
     photoKey = d.getDay();
     xReqPhotoChoice = new XMLHttpRequest();
-    xReqPhotoChoice.open('GET', photoApi);
+    xReqPhotoChoice.open('GET', 'https://pixabay.com/api/?key=8455558-58a99ccd0e878ead6f3916c5d&q='+ photoApi + '&image_type=photo&pretty=true');
     xReqPhotoChoice.onload = function result() {
         let xData = JSON.parse(xReqPhotoChoice.responseText);
-        let dialog = document.getElementById("dialog");
-        dialog.src = xData.hits[photoKey].webformatURL;
+        let dialog1 = document.getElementById("dialog1");
+        dialog1.src = xData.hits[photoKey].webformatURL;
+        let dialog2 = document.getElementById("dialog2");
+        dialog2.src = xData.hits[2].webformatURL;
+        let dialog3 = document.getElementById("dialog3");
+        dialog3.src = xData.hits[3].webformatURL;
+        let dialog4 = document.getElementById("dialog4");
+        dialog4.src = xData.hits[4].webformatURL;
+        let dialog5 = document.getElementById("dialog5");
+        dialog5.src = xData.hits[5].webformatURL;
+        let dialog6 = document.getElementById("dialog6");
+        dialog6.src = xData.hits[6].webformatURL;
+        let dialog7 = document.getElementById("dialog7");
+        dialog7.src = xData.hits[7].webformatURL;
+        let dialog8 = document.getElementById("dialog8");
+        dialog8.src = xData.hits[8].webformatURL;
+        let dialog9 = document.getElementById("dialog9");
+        dialog9.src = xData.hits[9].webformatURL;
+        let dialog10 = document.getElementById("dialog10");
+        dialog10.src = xData.hits[10].webformatURL;
         let modal = document.getElementById('modal-content1');
         modal.style.display = "block";
     }
     xReqPhotoChoice.send();
-}
-
-function nextPhoto(){
-    let bigNextPhoto = new bigPhoto();
     
-    photoKey++;
 }
-
 //This function make the big photo is visible when click on somewhere empty around the big photo
 function visibleBigPhoto() {
     let bigPhoto = document.getElementById('modal-content1');
     bigPhoto.style.display = "none";
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+      slides[0].style.display = "block"; 
+      slides[1].style.display = "none"; 
+      slides[2].style.display = "none"; 
+      slides[3].style.display = "none"; 
+      slides[4].style.display = "none"; 
+      slides[5].style.display = "none"; 
+      slides[6].style.display = "none"; 
+      slides[7].style.display = "none";
+      slides[8].style.display = "none"; 
+      slides[9].style.display = "none";    
+    }
 }
 
 
@@ -259,7 +281,32 @@ function curentCity() {
         findLocation.value = localStorage.getItem('curentCity');
         handelCityName();
     }
-
 }
 curentCity();
 
+
+
+
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  slides[slideIndex-1].style.display = "block";  
+ // dots[slideIndex-1].className += " active"; 
+}
